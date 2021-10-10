@@ -1,6 +1,8 @@
 # lovelace-xiaomi-purifier
 Xiaomi Air Purifier lovelace card with css animation
 
+![screenshot](https://user-images.githubusercontent.com/73251414/136708653-04b76202-5a67-446b-93d8-e544c0b6feb5.png)
+
 ## Extra Features
 1. compact view to show temperature and humidity 
 2. button to turn on/off buzzer,child lock and led
