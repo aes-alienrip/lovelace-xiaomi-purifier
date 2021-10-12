@@ -119,6 +119,7 @@ class XiaomiPurifier extends HTMLElement {
             .ha-air-filter-panel{overflow:hidden;}            
             .card-header{display:flex;justify-content: space-between;}
             .card-header .name{text-decoration: none;flex-grow: 1;}
+            .card-header .title{font-size:1em}
                         
            .content-bg{
               height: 300px;
@@ -160,7 +161,7 @@ class XiaomiPurifier extends HTMLElement {
             .content p:nth-child(3){color:white;}
             .content p:nth-child(4) {padding-top: 30px;}
             .content p:nth-child(4) span{color: white; }
-            .content p:nth-child(4) span b{font-weight: normal;font-size: 2em; padding:0 3px;}
+            .content p:nth-child(4) span b{font-weight: normal;font-size: 2em; padding:0 3px;cursor:pointer;}
             .content p:nth-child(4) span ha-icon{margin-top: -10px; color: rgba(255,255,255,0.7);}
             .content p:nth-child(4) span:first-of-type{margin-right:10px;}
             .content p:nth-child(4) span:last-of-type{margin-left:10px;}
@@ -198,11 +199,11 @@ class XiaomiPurifier extends HTMLElement {
             
             /**aqi bg-color base on https://aqicn.org/calculator**/
             .on .level-1{background-color:#01BE9E;}
-            .on .level-2{background-color:gold;}
+            .on .level-2{background-color:#FFC800;}
             .on .level-3{background-color:darkorange;}
             .on .level-4{background-color:#BE0027;}
-            .on .level-5{background-color:#520086;}
-            .on .level-6{background-color:#6A001B;}
+            .on .level-5{background-color:purple;}
+            .on .level-6{background-color:maroon;}
 
             /**off**/
             .off .content-bg div{background: rgba(0,0,0,.1);}
@@ -286,35 +287,10 @@ class XiaomiPurifier extends HTMLElement {
       const entityId = this.config.entity;
       this.fire('hass-more-info', { entityId })
     }
-    // more temp
-    $('.tmp-body div:nth-child(2) span').onclick = () => {
-      const entityId = this.config.entity.replace('fan', 'sensor') + '_temperature';
-      this.fire('hass-more-info', { entityId })
-    }
-    // more humid
-    $('.tmp-body div:nth-child(3) span').onclick = () => {
-      const entityId = this.config.entity.replace('fan', 'sensor') + '_humidity';
-      this.fire('hass-more-info', { entityId })
-    }
     // more pm2_5
     $('.content p:nth-child(2) span').onclick = () => {
       const entityId = this.config.entity.replace('fan', 'sensor') + '_pm2_5';
       this.fire('hass-more-info', { entityId })
-    }
-    // switch buzzer
-    $('.card-header ha-icon-button#buzzer').onclick = (e) => {
-      const buzzer = e.target.getAttribute('icon') === 'mdi:volume-high';
-      this.callSwitchBuzzer(buzzer ? 'turn_off' : 'turn_on',{} );
-    }
-    // switch child_lock
-    $('.card-header ha-icon-button#lock').onclick = (e) => {
-      const lock = e.target.getAttribute('icon') === 'mdi:lock';
-      this.callSwitchLock(lock ? 'turn_off' : 'turn_on',{} );
-    }
-    // switch led
-    $('.card-header ha-icon-button#ledon').onclick = (e) => {
-      const ledon = e.target.getAttribute('icon') === 'mdi:led-on';
-      this.callSwitchLED(ledon ? 'turn_off' : 'turn_on',{} );
     }
     // switch led
     $('.body .content').ondblclick = (e) => {
@@ -460,14 +436,33 @@ class XiaomiPurifier extends HTMLElement {
       }
     }
     // advanced
+    let temp = $('.content p:nth-child(4) .temperature b')
+    let humid = $('.content p:nth-child(4) .humidity b')
+    let advtemp = $('.tmp-body div:nth-child(2) span')
+    let advhumid = $('.tmp-body div:nth-child(3) span')
     if( this.config.advanced===true ){
         $('.tmp-body div:nth-child(1) span').textContent = filter_life_remaining
-        $('.tmp-body div:nth-child(2) span').textContent = temperature
-        $('.tmp-body div:nth-child(3) span').textContent = humidity
+        advtemp.textContent = temperature
+        advtemp.onclick = () => {
+          const entityId = this.config.entity.replace('fan', 'sensor') + '_temperature';
+          this.fire('hass-more-info', { entityId })
+        }
+        advhumid.textContent = humidity
+        advhumid.onclick = () => {
+          const entityId = this.config.entity.replace('fan', 'sensor') + '_humidity';
+          this.fire('hass-more-info', { entityId })
+        }
     }
-    $('.content p:nth-child(4) .temperature b').textContent = temperature;
-    $('.content p:nth-child(4) .humidity b').textContent = humidity;
-
+    temp.textContent = temperature;
+    temp.onclick = () => {
+      const entityId = this.config.entity.replace('fan', 'sensor') + '_temperature';
+      this.fire('hass-more-info', { entityId })
+    }
+    humid.textContent = humidity;
+    humid.onclick = () => {
+      const entityId = this.config.entity.replace('fan', 'sensor') + '_humidity';
+      this.fire('hass-more-info', { entityId })
+    }
     // aqi lv base on https://aqicn.org/calculator
     let qls = $('.content').classList
     qls.remove('level-1', 'level-2', 'level-3', 'level-4', 'level-5', 'level-6')
@@ -521,22 +516,37 @@ class XiaomiPurifier extends HTMLElement {
         }));
     }
     // buzzer
+    let iconbuzzer = $('.card-header ha-icon-button#buzzer')
+    iconbuzzer.onclick = (e) => {
+      const buzzer = e.target.getAttribute('icon') === 'mdi:volume-high';
+      this.callSwitchBuzzer(buzzer ? 'turn_off' : 'turn_on',{} );
+    }
     if (buzzer === 'on') {
-      $('.card-header ha-icon-button#buzzer').setAttribute('icon', 'mdi:volume-high')
+      iconbuzzer.setAttribute('icon', 'mdi:volume-high')
     } else if (buzzer === 'off') {
-      $('.card-header ha-icon-button#buzzer').setAttribute('icon', 'mdi:volume-off')
+      iconbuzzer.setAttribute('icon', 'mdi:volume-off')
     }
     // child_lock
+    let iconlock = $('.card-header ha-icon-button#lock')
+    iconlock.onclick = (e) => {
+      const lock = e.target.getAttribute('icon') === 'mdi:lock';
+      this.callSwitchLock(lock ? 'turn_off' : 'turn_on',{} );
+    }
     if (child_lock === 'on') {
-      $('.card-header ha-icon-button#lock').setAttribute('icon', 'mdi:lock')
+      iconlock.setAttribute('icon', 'mdi:lock')
     } else if (child_lock === 'off') {
-      $('.card-header ha-icon-button#lock').setAttribute('icon', 'mdi:lock-open')
+      iconlock.setAttribute('icon', 'mdi:lock-open')
     }
     // ledon
+    let iconledon = $('.card-header ha-icon-button#ledon')
+    iconledon.onclick = (e) => {
+      const ledon = e.target.getAttribute('icon') === 'mdi:led-on';
+      this.callSwitchLED(ledon ? 'turn_off' : 'turn_on',{} );
+    }
     if (ledon === 'on') {
-      $('.card-header ha-icon-button#ledon').setAttribute('icon', 'mdi:led-on')
+      iconledon.setAttribute('icon', 'mdi:led-on')
     } else if (ledon === 'off') {
-      $('.card-header ha-icon-button#ledon').setAttribute('icon', 'mdi:led-off')
+      iconledon.setAttribute('icon', 'mdi:led-off')
     }
   }
 
