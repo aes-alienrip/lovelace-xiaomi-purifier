@@ -33,7 +33,6 @@ Xiaomi Air Purifier lovelace card with css animation
   ```
   
 ## Flags
-----------------------------
 | Flag                     | Values                             | Usage                                                                       |
 |--------------------------|------------------------------------|-----------------------------------------------------------------------------|
 | advanced                 | true                               | Showing temperature, humidity and filter remaining in the middle.           |
@@ -42,14 +41,15 @@ Xiaomi Air Purifier lovelace card with css animation
 | new_led_mode             | **true**                           | Showing aqi color in panel ignoring led state, adding led icon to toggle.   |
 |                          | false                              | Showing black panel only if led is off, double click panel to switch led.   |
 
-### Language 
+## Language
 Displays English texts by default, for Traditional Chinese users, add 
 ```
 language: cht
 ``` 
 to "Card Configuration" for displaying texts in Traditional Chinese.
 
-Add translations to "Card Configuration" get your own language support. Translate to Simplified Chinese as example below:
+## Translation
+Add translations to "Card Configuration" to get your own language support. Translate to Simplified Chinese as example below:
 ``` 
 translate:
   Good: 优
