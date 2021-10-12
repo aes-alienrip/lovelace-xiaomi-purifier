@@ -43,38 +43,34 @@ Xiaomi Air Purifier lovelace card with css animation
 |                          | false                              | Showing black panel only if led is off, double click panel to switch led.   |
 
 ### Language 
-Displays English texts by default, for Chinese language users, add 
+Displays English texts by default, for Traditional Chinese users, add 
 ```
 language: cht
 ``` 
-to card configuration for displaying texts in Chinese.
+to "Card Configuration" for displaying texts in Traditional Chinese.
 
-Add translations to get your own language support. 
+Add translations to "Card Configuration" get your own language support. Translate to Simplified Chinese as example below:
 ``` 
-translate: 
-   'Good': '優',
-   'Moderate': '良',
-   'Mild Unhealthy':'輕度污染',
-   'Unhealthy': '中度污染',
-   'Very Unhealthy': '重度污染',
-   'Hazardous': '嚴重污染',
-
-   'Air Purifier': '空氣淨化器',
-
-   'On': '開機',
-   'Off': '關機',
-
-   'Set Preset Mode': '設置模式',
-   'Device Turned On': '裝置已開啟',
-   'Device Turned Off': '裝置已關閉',
-   'Indoor AQ': '室內空氣',
-  
-   'Auto': '自動',
-   'Silent': '睡眠',
-   'Favorite':'最愛',
-   'Filter Remaining': '濾芯剩餘',
-   'Temperature': '溫度',
-   'Humidity': '濕度'
+translate:
+  Good: 优
+  Moderate: 良
+  Mild Unhealthy: 轻度污染
+  Unhealthy: 中度污染
+  Very Unhealthy: 重度污染
+  Hazardous: 严重污染
+  Air Purifier: 空气净化器
+  On: 开机
+  Off: 关机
+  Set Preset Mode: 设置模式
+  Device Turned On: 装置已开启
+  Device Turned Off: 装置已关闭
+  Indoor AQ: 室内空气
+  Auto: 自动
+  Silent: 睡眠
+  Favorite: 最爱
+  Filter Remaining: 滤芯剩余
+  Temperature: 温度
+  Humidity: 湿度
 
 ```
 
