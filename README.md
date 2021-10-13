@@ -11,9 +11,8 @@ Xiaomi Air Purifier lovelace card with css animation
 5. single click on temperature, humidity and pm2.5 value to show history
 
 ## HACS Installation
-1. HACS -> Settings -> Add custom repository <-> Plugin
-2. Find 'Xiaomi Air Purifier Card' in HACS Plugins
-3. Install and add to Lovelace
+1. Find `Xiaomi Air Purifier Card` in HACS Frontend
+2. Install and add to Lovelace
 
 ## Manual Installation
 1. Download `xiaomi-purifier.js` to `www/plugins/xiaomi-purifier.js`
@@ -33,23 +32,23 @@ Xiaomi Air Purifier lovelace card with css animation
   ```
   
 ## Flags
-| Flag                     | Values                             | Usage                                                                       |
-|--------------------------|------------------------------------|-----------------------------------------------------------------------------|
-| advanced                 | true                               | Showing temperature, humidity and filter remaining in the middle.           |
-|                          | **false**                          | Showing temperature and humidity in green panel.                            |
-| dust_effect              | true / **false**                   | Showing mi-home app likes dust effect, false to save cpu rendering usage.   |
-| new_led_mode             | **true**                           | Showing aqi color in panel ignoring led state, adding led icon to toggle.   |
-|                          | false                              | Showing black panel only if led is off, double click panel to switch led.   |
+| Flag                     | Values                             | Usage                                                                     |
+|--------------------------|------------------------------------|---------------------------------------------------------------------------|
+| `advanced`               | true                               | Showing temperature, humidity and filter remaining in the middle.         |
+|                          | **false**                          | Showing temperature and humidity in green panel.                          |
+| `dust_effect`            | true / **false**                   | Showing mi-home app likes dust effect, false to save cpu rendering usage. |
+| `new_led_mode`           | **true**                           | Showing aqi color in panel ignoring led state, adding led icon to toggle. |
+|                          | false                              | Showing black panel only if led is off, double click panel to switch led. |
 
 ## Language
 Displays English texts by default, for Traditional Chinese users, add 
 ```
 language: cht
 ``` 
-to "Card Configuration" for displaying texts in Traditional Chinese.
+to `Card Configuration` for displaying texts in Traditional Chinese.
 
 ## Translation
-Add translations to "Card Configuration" to get your own language support. Translate to Simplified Chinese as example below:
+Add translations to `Card Configuration` to get your own language support. Translate to Simplified Chinese as example below:
 ``` 
 translate:
   Good: 优
