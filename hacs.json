@@ -1,5 +1,6 @@
 {
   "name": "Xiaomi Air Purifier Card",
+  "content_in_root": true,
   "filename": "xiaomi-purifier.js",
   "render_readme": true
 }
