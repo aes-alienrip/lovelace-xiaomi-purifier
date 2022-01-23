@@ -23,6 +23,7 @@ Xiaomi Air Purifier lovelace card with css animation
   type: 'custom:xiaomi-purifier'
   entity: fan.anyid
   title: name of the purifier device #optional
+  advanced: false #optional
   dust_effect: true #optional
   new_led_mode: false #optional
   ```
