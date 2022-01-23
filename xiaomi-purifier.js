@@ -1,9 +1,9 @@
-class XiaomiPurifier extends HTMLElement {  
+class XiaomiPurifier extends HTMLElement {
   _t(str){
     const chinese = {
       'Good': '優',
       'Moderate': '良',
-      'Mild Unhealthy':'輕度污染',
+      'Mild Unhealthy': '輕度污染',
       'Unhealthy': '中度污染',
       'Very Unhealthy': '重度污染',
       'Hazardous': '嚴重污染',
@@ -52,10 +52,10 @@ class XiaomiPurifier extends HTMLElement {
                     <ha-icon icon="mdi:air-filter"></ha-icon> 
                     <span class="title">空氣淨化器</span>
                 </a>
-                <span class="ledon"><ha-icon-button id="ledon" icon="mdi:led-on" style="margin-top:-8px;"></ha-icon-button></span>
-                <span><ha-icon-button id="lock" icon="mdi:lock" style="margin-top:-8px;"></ha-icon-button></span>
-                <span><ha-icon-button id="buzzer" icon="mdi:volume-high" style="margin-top:-8px;"></ha-icon-button></span>
-                <span><ha-icon-button id="more" icon="mdi:dots-vertical" style="margin-top:-8px;"></ha-icon-button></span>
+                <span class="ledon"><ha-icon-button><ha-icon style="margin-top:-8px;" id="ledon" icon="mdi:led-on"></ha-icon></ha-icon-button></span>
+                <span><ha-icon-button><ha-icon style="margin-top:-8px;" id="lock" icon="mdi:lock"></ha-icon></ha-icon-button></span>
+                <span><ha-icon-button><ha-icon style="margin-top:-8px;" id="buzzer" icon="mdi:volume-high"></ha-icon></ha-icon-button></span>
+                <span><ha-icon-button><ha-icon style="margin-top:-8px;" id="more" icon="mdi:dots-vertical"></ha-icon></ha-icon-button></span>
             </div>
             <div class="duang">
             <div class="body">
@@ -283,7 +283,7 @@ class XiaomiPurifier extends HTMLElement {
         })
     }
     // more
-    $('.card-header ha-icon-button#more').onclick = () => {
+    $('.card-header ha-icon#more').onclick = () => {
       const entityId = this.config.entity;
       this.fire('hass-more-info', { entityId })
     }
@@ -516,7 +516,7 @@ class XiaomiPurifier extends HTMLElement {
         }));
     }
     // buzzer
-    let iconbuzzer = $('.card-header ha-icon-button#buzzer')
+    let iconbuzzer = $('.card-header ha-icon#buzzer')
     iconbuzzer.onclick = (e) => {
       const buzzer = e.target.getAttribute('icon') === 'mdi:volume-high';
       this.callSwitchBuzzer(buzzer ? 'turn_off' : 'turn_on',{} );
@@ -527,7 +527,7 @@ class XiaomiPurifier extends HTMLElement {
       iconbuzzer.setAttribute('icon', 'mdi:volume-off')
     }
     // child_lock
-    let iconlock = $('.card-header ha-icon-button#lock')
+    let iconlock = $('.card-header ha-icon#lock')
     iconlock.onclick = (e) => {
       const lock = e.target.getAttribute('icon') === 'mdi:lock';
       this.callSwitchLock(lock ? 'turn_off' : 'turn_on',{} );
@@ -535,10 +535,10 @@ class XiaomiPurifier extends HTMLElement {
     if (child_lock === 'on') {
       iconlock.setAttribute('icon', 'mdi:lock')
     } else if (child_lock === 'off') {
-      iconlock.setAttribute('icon', 'mdi:lock-open')
+      iconlock.setAttribute('icon', 'mdi:lock-open-variant')
     }
     // ledon
-    let iconledon = $('.card-header ha-icon-button#ledon')
+    let iconledon = $('.card-header ha-icon#ledon')
     iconledon.onclick = (e) => {
       const ledon = e.target.getAttribute('icon') === 'mdi:led-on';
       this.callSwitchLED(ledon ? 'turn_off' : 'turn_on',{} );
