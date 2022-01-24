@@ -8,8 +8,13 @@ Xiaomi Air Purifier lovelace card with css animation
 2. button to turn on/off buzzer,child lock and led
 3. double click to swith led 
 4. hold "Favorite" button to adjust favorite level
-5. single click on temperature, humidity and pm2.5 value to show history
+5. single click on temperature, humidity or pm2.5 value to show history
 
+## HACS Installation
+1. HACS -> Settings -> Add custom repository <-> Plugin
+2. Find 'Xiaomi Air Purifier Card' in HACS Plugins
+3. Install and add to Lovelace
+			
 ## Manual Installation
 1. Download `xiaomi-purifier.js` to `www/plugins/xiaomi-purifier.js`
 1. Add to lovelace resources
